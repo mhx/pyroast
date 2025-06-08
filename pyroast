@@ -1,0 +1,346 @@
+#!/usr/bin/env python3
+import argparse
+import pathlib
+import sys
+import joblib
+import numpy as np
+import pandas as pd
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.linear_model import RidgeCV
+from sklearn.pipeline import Pipeline
+from sklearn.model_selection import cross_val_score, KFold
+from sklearn.ensemble import HistGradientBoostingRegressor
+from sklearn.utils.validation import check_is_fitted
+
+# ─────────────────────────── column sets ─────────────────────────── #
+
+BASE_PREDICTORS = [
+    "Profile",  # Kaffelogic roast profile
+    "Level",  # roast level (0.0 – 5.9)
+    "Moisture",  # green-bean moisture content in %
+    "Density [g/l]",  # green-bean density in g/l
+    "Weight [mg]",  # average green-bean weight in mg
+    "Altitude",  # average altitude in meters
+    "Bean Age",  # derived from Roast Date and Harvest year
+]
+
+MODEL_PREDICTORS = {
+    "loss": BASE_PREDICTORS,  # ➜ predict Weight Loss during roast
+    "color": BASE_PREDICTORS,  # ➜ predict Color (Tonino color scale)
+    "dose": BASE_PREDICTORS + ["Loss"],  # ➜ predict Dose for double shot
+    "grind": BASE_PREDICTORS + ["Loss"],  # ➜ predict Grind setting (°Titus)
+}
+
+TARGETS = {
+    "loss": "Loss",
+    "color": "Color",
+    "dose": "Dose [g]",
+    "grind": "Grind [°Titus]",
+}
+
+CATEGORICAL_COLS = ["Profile"]
+PERCENT_COLS = ["Moisture", "Loss"]
+NUMERIC_COLS = [
+    "Moisture",
+    "Density [g/l]",
+    "Weight [mg]",
+    "Level",
+    "Loss",
+    "Color",
+    "Dose [g]",
+]
+
+# ─────────────────────────── TSV reader (unchanged except drop logic removed) ─────────────────────────── #
+
+
+def read_tsv(path: str | pathlib.Path) -> pd.DataFrame:
+    """Parse the roast TSV and compute Bean Age and Altitude; no row dropping here."""
+    df = pd.read_csv(path, sep="\t")
+    df.columns = df.columns.str.strip()
+
+    # %-columns
+    for col in PERCENT_COLS:
+        if col in df.columns:
+            df[col] = (
+                df[col]
+                .astype(str)
+                .str.replace("%", "", regex=False)
+                .replace(["LOW", "N/A", ""], np.nan)
+                .astype(float, errors="ignore")
+            )
+
+    # numeric coercion
+    for col in NUMERIC_COLS + list(TARGETS.values()):
+        if col in df.columns:
+            df[col] = pd.to_numeric(df[col], errors="coerce")
+
+    # Bean Age in years
+    if {"Roast Date", "Harvest"} <= set(df.columns):
+        df["Roast Date"] = pd.to_datetime(
+            df["Roast Date"], dayfirst=True, errors="coerce"
+        )
+        df["Harvest"] = pd.to_numeric(df["Harvest"], errors="coerce")
+        df["Bean Age"] = (
+            df["Roast Date"]
+            - pd.to_datetime(df["Harvest"], format="%Y", errors="coerce")
+        ).dt.days / 365.25
+
+    # Average Altitude
+    if "Altitude" in df.columns:
+        # "Altitude" can be a single value or a range like "1200-1500"
+        df["Altitude"] = (
+            df["Altitude"]
+            .astype(str)
+            .str.split("-", expand=True)
+            .apply(lambda x: pd.to_numeric(x, errors="coerce"))
+            .mean(axis=1, skipna=True)
+        )
+
+    return df
+
+
+# ─────────────────────────── pipeline factory ─────────────────────────── #
+
+
+def build_pipeline(tag: str) -> Pipeline:
+    numeric_feats = [c for c in MODEL_PREDICTORS[tag] if c not in CATEGORICAL_COLS]
+    ct = ColumnTransformer(
+        transformers=[
+            ("num", StandardScaler(), numeric_feats),
+            ("cat", OneHotEncoder(drop="first"), CATEGORICAL_COLS),
+        ]
+    )
+    if tag in ("loss", "color"):
+        reg = RidgeCV(alphas=np.logspace(-2, 3, 10))
+    else:  # grind
+        reg = HistGradientBoostingRegressor(
+            loss="poisson", learning_rate=0.05, max_depth=3, random_state=42
+        )
+    return Pipeline([("prep", ct), ("reg", reg)])
+
+
+# ─────────────────────────── helper: get per-model cleaned DF ─────────────────────────── #
+
+
+def model_dataframe(df: pd.DataFrame, tag: str) -> pd.DataFrame:
+    """Return rows that have *all* predictors for <tag> plus its target."""
+    cols_needed = MODEL_PREDICTORS[tag] + [TARGETS[tag]]
+    return df.dropna(subset=cols_needed)
+
+
+# ─────────────────────────── TRAIN ─────────────────────────── #
+
+
+def cmd_train(args):
+    raw = read_tsv(args.tsv)
+    tot = len(raw)
+    outdir = pathlib.Path(args.out).expanduser()
+    outdir.mkdir(exist_ok=True)
+
+    for tag in TARGETS:
+        df = model_dataframe(raw, tag)
+        print(f"• {tag:<5}  using {len(df):>3}/{tot} rows")
+
+        X, y = df[MODEL_PREDICTORS[tag]], df[TARGETS[tag]]
+        pipe = build_pipeline(tag).fit(X, y)
+        joblib.dump(pipe, outdir / f"{tag}.pkl")
+
+    print(f"✅ models written to {outdir}")
+
+
+# ─────────────────────────── EVALUATE ─────────────────────────── #
+
+
+def cmd_evaluate(args):
+    raw = read_tsv(args.tsv)
+    tot = len(raw)
+    kf = KFold(n_splits=args.folds, shuffle=True, random_state=42)
+
+    for tag in TARGETS:
+        df = model_dataframe(raw, tag)
+        X, y = df[MODEL_PREDICTORS[tag]], df[TARGETS[tag]]
+        pipe = build_pipeline(tag)
+
+        if tag == "grind":
+            scores = -cross_val_score(
+                pipe, X, y, cv=kf, scoring="neg_mean_absolute_error"
+            )
+            metric = "MAE "
+        else:
+            scores = -cross_val_score(
+                pipe, X, y, cv=kf, scoring="neg_root_mean_squared_error"
+            )
+            metric = "RMSE"
+
+        print(
+            f"{tag.capitalize():5} | {metric}: {scores.mean():.2f} ± {scores.std():.2f} "
+            f"({len(df)}/{tot} rows)"
+        )
+
+
+def _load_models(model_dir):
+    mdl = {}
+    for tag in TARGETS.keys():
+        path = model_dir / f"{tag}.pkl"
+        if not path.exists():
+            sys.exit(f"❌ expected model {path} – did you run 'train'?")
+        mdl[tag] = joblib.load(path)
+        check_is_fitted(mdl[tag])
+    return mdl
+
+
+# ─────────────────────────── PREDICT on TSV ─────────────────────────── #
+
+
+def cmd_predict(args):
+    df = read_tsv(args.tsv)
+    mdl = _load_models(pathlib.Path(args.models))
+    for tag, pipe in mdl.items():
+        needed = MODEL_PREDICTORS[tag]
+        mask = df[needed].notna().all(axis=1)
+        df.loc[mask, f"pred_{TARGETS[tag]}"] = pipe.predict(df.loc[mask, needed])
+    df.to_csv(sys.stdout, sep="\t", index=False)
+
+
+# ─────────────────────────── PREDICT-ROW ─────────────────────────── #
+
+
+def parse_single_row(ns) -> pd.DataFrame:
+    return pd.DataFrame(
+        [
+            {
+                "Profile": ns.profile,
+                "Level": ns.level,
+                "Moisture": ns.moisture,
+                "Density [g/l]": ns.density,
+                "Weight [mg]": ns.weight,
+                "Altitude": ns.altitude,
+                "Bean Age": ns.bean_age,
+                "Loss": ns.loss,  # Loss is optional, only needed for grind/dose
+                "Color": np.nan,  # Color isn't needed for prediction
+            }
+        ]
+    )
+
+
+def cmd_predict_row(args):
+    row = parse_single_row(args)
+    mdl = _load_models(pathlib.Path(args.models))
+
+    for tag, pipe in mdl.items():
+        if row[MODEL_PREDICTORS[tag]].notna().all(axis=1).iloc[0]:
+            row[f"pred_{TARGETS[tag]}"] = pipe.predict(row[MODEL_PREDICTORS[tag]])[0]
+
+    for col, val in row.filter(regex="^pred_").iloc[0].items():
+        print(f"{col[5:]:6}: {val:.2f}")
+
+
+# ─────────────────────────── SOLVE ROAST LEVEL ─────────────────────────── #
+
+
+def cmd_level(args):
+    """
+    Search the roast Level (0.0 – 5.9) that yields the desired Tonino colour.
+    """
+    mdl = _load_models(pathlib.Path(args.models))
+    pipe_color = mdl["color"]
+    needed = MODEL_PREDICTORS["color"]
+
+    base = {
+        "Profile": args.profile,
+        "Moisture": args.moisture,
+        "Density [g/l]": args.density,
+        "Weight [mg]": args.weight,
+        "Bean Age": args.bean_age,
+        "Altitude": args.altitude,
+        "Level": 0.0,  # placeholder, updated each loop
+    }
+
+    # Find roast Level with the minimum error to the target colour
+    best_level = 0.0
+    best_tolerance = float("inf")
+
+    for level in np.arange(0.0, 6.0, 0.1):
+        base["Level"] = level
+        pred = pipe_color.predict(pd.DataFrame([base])[needed])[0]
+
+        tolerance = abs(pred - args.target_color)
+
+        if tolerance < best_tolerance:
+            best_tolerance = tolerance
+            best_level = level
+
+    print(
+        f"Best roast level for target color {args.target_color:.0f} is: {best_level:.1f} (error: {best_tolerance:.2f})"
+    )
+
+
+def main():
+    p = argparse.ArgumentParser(
+        description="Model Kaffelogic roast outcomes from green-bean data."
+    )
+    sub = p.add_subparsers(required=True)
+
+    # train
+    t = sub.add_parser("train", help="fit new models and save .pkl files")
+    t.add_argument("--tsv", required=True)
+    t.add_argument("--out", default="models")
+    t.set_defaults(func=cmd_train)
+
+    # evaluate
+    v = sub.add_parser("evaluate", help="k-fold CV on the dataset")
+    v.add_argument("--tsv", required=True)
+    v.add_argument("--folds", type=int, default=5)
+    v.set_defaults(func=cmd_evaluate)
+
+    # predict (TSV)
+    pr = sub.add_parser("predict", help="predict into a TSV; emits to stdout")
+    pr.add_argument("--tsv", required=True)
+    pr.add_argument("--models", default="models")
+    pr.set_defaults(func=cmd_predict)
+
+    # predict-row (CLI kv)
+    pr1 = sub.add_parser("predict-row", help="single-row prediction via CLI options")
+    pr1.add_argument("--models", default="models")
+    pr1.add_argument("--profile", required=True)
+    pr1.add_argument("--level", type=float, required=True)
+    pr1.add_argument("--moisture", type=float, required=True)
+    pr1.add_argument("--density", type=float, required=True, help="bean density in g/l")
+    pr1.add_argument(
+        "--weight", type=float, required=True, help="average bean weight in mg"
+    )
+    pr1.add_argument(
+        "--altitude", type=float, required=True, help="average altitude in m"
+    )
+    pr1.add_argument(
+        "--bean-age", type=int, default=1, help="bean age in years (default: 1)"
+    )
+    pr1.add_argument("--loss", type=float, help="measured roast weight-loss %")
+
+    pr1.set_defaults(func=cmd_predict_row)
+
+    # level (inverse colour → level)
+    lv = sub.add_parser("level", help="find roast Level for a target Tonino colour")
+    lv.add_argument("--models", default="models")
+    lv.add_argument("--profile", required=True)
+    lv.add_argument("--moisture", type=float, required=True)
+    lv.add_argument("--density", type=float, required=True, help="bean density in g/l")
+    lv.add_argument(
+        "--weight", type=float, required=True, help="average bean weight in mg"
+    )
+    lv.add_argument(
+        "--altitude", type=float, required=True, help="average altitude in m"
+    )
+    lv.add_argument(
+        "--bean-age", type=int, default=1, help="bean age in years (default: 1)"
+    )
+    lv.add_argument("--target-color", type=float, required=True)
+    lv.set_defaults(func=cmd_level)
+
+    args = p.parse_args()
+    args.func(args)
+
+
+if __name__ == "__main__":
+    main()

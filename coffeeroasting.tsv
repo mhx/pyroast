@@ -1,0 +1,72 @@
+Name	Supplier	Region	Country	Origin	Altitude	Varietal	Process	Harvest	Moisture	Density [g/l]	Weight [mg]	Roast Date	Profile	Level	Batch	In [g]	Out [g]	Loss	DTR	Color	Dose [g]	Grind [°Titus]	Notes	
+G1 Dumerso	Rave	Africa	Ethiopia	Yirgacheffe	1800-2000	Mixed Heirloom	Natural	2015	9.6%	737	138	07/07/2024	KL Natural	1.5	1	100.0	89.0	11.0%		121	17.5	30.0	Bit darker	
+G1 Konga	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	743	147	07/07/2024	KL Natural	1.5	2	100.0	88.6	11.4%		118	17.5	35.0	Good, bit darker.	
+Shakiso Kayon	Sweet Maria's	Africa	Ethiopia	Guji Zone, Shakiso	1900-2200	Mixed Heirloom	Natural	2015	10.8%	729	120	07/07/2024	KL Natural	1.8	3	100.0	87.1	12.9%		115	17.5	40.0	Bit lighter?	
+G1 Kochere	Coffee Compass	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Fully Washed	2015	10.6%	731	136	07/07/2024	KL Washed	1.6	4	100.0	87.2	12.8%			17.0	37.5	Tiny bit lighter.	
+Toarco Jaya	Has Bean	Indonesia	Sulawesi	Tana Toraja	1400-2000	Typica Peaberry	Washed	2015	11.3%	704	186	07/07/2024	KL Washed	1.6	5	100.0	86.4	13.6%		105	17.0	25.0	Bit too dark.	
+El Palmo	BellaBarista	South America	Peru	Cajamarca	2000	Caturra, Pache, Catimor, Typica	Fully Washed	2015	11.4%	702	186	07/07/2024	KL Washed	1.5	6	100.0	86.5	13.5%		111	17.0	20.0	Good!	
+Boa Vista	88graines	South America	Brazil	Campo Das Vertentes	1150	Yellow Catucai	Aerobic	2023	11.1%	718	137	07/07/2024	KL Washed	1.5	7	100.0	87.4	12.6%		118	17.5	40.0	Too light	
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	07/07/2024	KL Natural	1.5	8	100.0	87.3	12.7%					Too light	
+Kieni	Has Bean	Africa	Kenya	Nyeri	1800	SL28 AA	Washed	2015	11.6%	718	203	07/07/2024	KL Washed	1.5	9	100.0	85.8	14.2%		108	17.0	25.0	Lighter!	
+Toarco Jaya	Has Bean	Indonesia	Sulawesi	Tana Toraja	1400-2000	Typica Peaberry	Washed	2015	11.3%	704	186	25/07/2024	KL Washed	1.3	1	145.5	127.5	12.4%		114	17.0	22.5	Good!	
+Boa Vista	88graines	South America	Brazil	Campo Das Vertentes	1150	Yellow Catucai	Aerobic	2023	11.1%	718	137	25/07/2024	KL Washed	1.7	2	100.0	86.9	13.1%		113	17.0	55.0	Meh	
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	25/07/2024	KL Natural	1.7	3	100.0	87.3	12.7%		124	17.5	30.0	Way too light	
+G1 Kochere	Coffee Compass	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Fully Washed	2015	10.6%	731	136	02/08/2024	KL Washed	1.5	3	100.0	87.6	12.4%		113	17.0	37.5	Nice!	
+Kieni	Has Bean	Africa	Kenya	Nyeri	1800	SL28 AA	Washed	2015	11.6%	718	203	02/08/2024	KL Washed	1.3	4	100.0	86.0	14.0%		103	17.0	35.0	Lighter!	
+Shakiso Kayon	Sweet Maria's	Africa	Ethiopia	Guji Zone, Shakiso	1900-2200	Mixed Heirloom	Natural	2015	10.8%	729	120	02/08/2024	KL Natural	1.5	5	100.0	88.1	11.9%		121	17.5	40.0	Darker.	
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	02/08/2024	KL Natural	1.9	6	100.0	86.4	13.6%		118	17.0	35.0	Too light	
+El Palmo	BellaBarista	South America	Peru	Cajamarca	2000	Caturra, Pache, Catimor, Typica	Fully Washed	2015	11.4%	702	186	02/08/2024	KL Washed	1.5	1,2	250.0	216.3	13.5%		115	17.0	20.0		
+El Palmo	BellaBarista	South America	Peru	Cajamarca	2000	Caturra, Pache, Catimor, Typica	Fully Washed	2015	11.4%	702	186	11/08/2024	KL Washed	1.5	1,2	297.9	257.5	13.6%		110	17.0	25.0	Fantastic!	
+G1 Kochere	Coffee Compass	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Fully Washed	2015	10.6%	731	136	11/08/2024	KL Washed	1.5	3,4,5	364.0	319.0	12.4%		110	17.0	37.5	Very nice!	
+Finca Tamana #4	Rave	South America	Colombia	Pital, Huila	1700-1800	Colombia, Castillo	Washed	2015	10.5%	742	146	18/08/2024	KL Washed	1.5	1	100.0	87.5	12.5%		106	17.5	25.0	Very nice!	
+Fazenda Londrina	BellaBarista	South America	Brazil	Cerrado, Minas Gerais	1150	Yellow Catuai, Catu, Acaia	Pulped Natural	2015	10.0%	718	188	18/08/2024	KL Natural	1.5	2	100.0	88.8	11.2%		120	17.5	30.0	Nice, bit darker -> 1.7	
+Finca Argentina #1947	Rave	Central America	Nicaragua	Dipilto, Nueva Segovia	1100	Catuai	Yellow Honey	2015	10.4%	731	188	18/08/2024	KL Natural	1.5	3	100.0	88.5	11.5%		118	17.5	22.5	Good	
+Finca Altos De Erapuca	Rave	Central America	Honduras	Copán	1360	Catuai	Washed	2015	10.1%	715	180	18/08/2024	KL Washed	1.5	4	100.0	88.1	11.9%		112	17.5	30.0	Okay	
+Guatica La Esperanza	BellaBarista	South America	Colombia	Valle Del Cauca	1600-1800	Caturra, Typica	Fully Washed	2015	9.4%	710	162	18/08/2024	KL Washed	1.5	5	100.0	88.6	11.4%		103	17.5	30.0	Bit too dark, but good. -> 1.2	
+Fazenda Cachoeira da Grama	Has Bean	South America	Brazil	Mogiana (São Paolo)	1000-1200	Yellow Bourbon	Pulped Natural	2015	10.9%	711	139	21/08/2024	KL Natural	1.6	1	105.8	93.0	12.1%		120	17.5	37.5	Nice!	
+G1 Dumerso	Rave	Africa	Ethiopia	Yirgacheffe	1800-2000	Mixed Heirloom	Natural	2015	9.6%	737	138	21/08/2024	KL Natural	1.6	4	135.5	120.2	11.3%		115	17.5	45.0	Nice! Maybe even darker.	
+G1 Konga	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	743	147	21/08/2024	KL Natural	1.5	5	100.0	88.6	11.4%			17.5	37.5	Good, tiny bit darker -> 1.7	
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	21/08/2024	KL Natural	2.1	6	100.0	86.0	14.0%	16.0%	116	17.0	37.5	Darker	
+Boa Vista	88graines	South America	Brazil	Campo Das Vertentes	1150	Yellow Catucai	Aerobic	2023	11.1%	718	137	21/08/2024	KL Washed	1.6	7	100.0	86.7	13.3%	16.0%	110	17.5	55.0	Darker; is "Aerobic" more like a Natural?	
+Boa Vista	88graines	South America	Brazil	Campo Das Vertentes	1150	Yellow Catucai	Aerobic	2023	11.1%	718	137	21/08/2024	KL Washed	2.0	8	100.0	86.3	13.7%	20.5%	105	17.0	60.0	Very good!	
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	21/08/2024	KL Natural	2.5	9	100.0	85.5	14.5%	19.0%	113	17.0	37.5	Good, tiny bit darker -> 2.7	
+Finca Altos De Erapuca	Rave	Central America	Honduras	Copán	1360	Catuai	Washed	2015	10.1%	715	180	28/08/2024	KL Washed	1.5	2	120.0	106.1	11.6%		108	17.5	30.0		
+Guatica La Esperanza	BellaBarista	South America	Colombia	Valle Del Cauca	1600-1800	Caturra, Typica	Fully Washed	2015	9.4%	710	162	28/08/2024	KL Washed	1.3	3	163.6	144.4	11.7%		100	17.5	30.0		
+Finca Argentina #1947	Rave	Central America	Nicaragua	Dipilto, Nueva Segovia	1100	Catuai	Yellow Honey	2015	10.4%	731	188	09/09/2024	KL Natural	1.8	1,2,3	517.1	453.4	12.3%	19.5%				Tuscany	
+G1 Konga	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	743	147	09/09/2024	KL Natural	1.7	4,5	278.1	245.9	11.6%	18.0%				Tuscany	
+Finca Tamana #4	Rave	South America	Colombia	Pital, Huila	1700-1800	Colombia, Castillo	Washed	2015	10.5%	742	146	09/09/2024	KL Washed	1.7	1,2,3,4,5	841.9	737.6	12.4%	22.0%				Tuscany	
+Boa Vista	88graines	South America	Brazil	Campo Das Vertentes	1150	Yellow Catucai	Aerobic	2023	11.1%	718	137	09/09/2024	KL Natural	2.6	6,7	279.6	241.3	13.7%	18.5%	105	17.0	55.0		
+Finca El Puente	88graines	Central America	Honduras	Marcala, La Paz	1500-1700	Catuai	Natural	2023	11.8%	722	187	09/09/2024	KL Natural	2.7	8,9,10	497.2	424.4	14.6%	18.5%	114	17.0	30.0		
+Fazenda Londrina	BellaBarista	South America	Brazil	Cerrado, Minas Gerais	1150	Yellow Catuai, Catu, Acaia	Pulped Natural	2015	10.0%	718	188	10/09/2024	KL Natural	1.9	1,2,3	385.9	340.0	11.9%	21.5%				Tuscany	
+Shakiso Kayon	Sweet Maria's	Africa	Ethiopia	Guji Zone, Shakiso	1900-2200	Mixed Heirloom	Natural	2015	10.8%	729	120	10/09/2024	KL Natural	1.7	4,5	255.2	223.5	12.4%	20.5%	118	17.0	40.0		
+G1 Dumerso	Rave	Africa	Ethiopia	Yirgacheffe	1800-2000	Mixed Heirloom	Natural	2015	9.6%	737	138	19/10/2024	KL Natural	1.7	1,2,3	360.0	317.3	11.9%	22.6%	115	17.0	50.0	Nice!	
+Rocko Mountain	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	744	123	19/10/2024	KL Natural	1.7	4	100.0	88.1	11.9%	15.7%	120	17.0	40.0	Nice!	
+Simbi	Rave	Africa	Rwanda	Southern Province, Huye District	2000-2200	Red Bourbon	Fully Washed	2015	10.6%	735	155	19/10/2024	KL Washed	1.7	5	100.0	86.7	13.3%	23.1%					
+Monsooned Malabar AA	Rave	India	India	Chikmagalur, Malabar	1100	S275, S9, Kent, Catuai	Monsooned	2015	LOW	507	160	19/10/2024	KL Washed	2.3	6	100.0	88.1	11.9%	21.6%	112	17.0	37.5	Interesting, probably good	
+Rocko Mountain	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	744	123	19/10/2024	KL Natural	1.8	1,2,3,4	660.0	579.2	12.2%	21.0%		17.0	40.0	Nice!	
+Simbi	Rave	Africa	Rwanda	Southern Province, Huye District	2000-2200	Red Bourbon	Fully Washed	2015	10.6%	735	155	30/04/2025	KL Washed	1.5	8,9,10,11	440.0	384.3	12.7%	22.0%	106	16.5	30.0	Nice, bit too dark	
+Rocko Mountain	Rave	Africa	Ethiopia	Yirgacheffe, Gedeo Zone	1800-2000	Mixed Heirloom	Natural	2015	10.1%	744	123	30/04/2025	KL Natural	1.8	1,2	188.9	166.5	11.9%		115	16.5	40.0	Nice!	
+G1 Dumerso	Rave	Africa	Ethiopia	Yirgacheffe	1800-2000	Mixed Heirloom	Natural	2015	9.6%	737	138	30/04/2025	KL Natural	1.7	3,4,5,6,7	580.6	513.5	11.6%		119	16.5	40.0	Very nice!	
+Simbi	Rave	Africa	Rwanda	Southern Province, Huye District	2000-2200	Red Bourbon	Fully Washed	2015	10.6%	735	155	13/05/2025	KL Washed	1.1	1,2,3,4	391.5	344.5	12.0%		108	16.0	22.5	Nice, still a bit too dark	
+Santos	Rave	South America	Brazil	?		?	?	2015	8.2%	730	126	26/05/2025	KL Washed	1.5	1	100.0	88.7	11.3%		112	16.5	37.5	Nice, maybe tiny bit darker	
+Thirikwa Asali	Evo	Africa	Kenya	Kirinyaga Region	1600-1700	SL28 AA	Washed	2015	9.5%	694	171	26/05/2025	KL Washed	1.5	2	100.0	87.1	12.9%		112	16.5	35.0	Nice!	
+Guji Liya	Rave	Africa	Ethiopia	East of the Sidama zone, Oromia	1900-2000	Mixed Heirloom	Washed	2015	9.1%	752	148	26/05/2025	KL Washed	1.0	3	100.0	88.3	11.7%		110	16.5	37.5	Very nice!	
+Tweega	Rave	Africa	Tanzania	Mbeya, Southern Highlands	1200-1600	Bourbon, Typica	Fully Washed	2015	8.2%	723	174	26/05/2025	KL Washed	1.3	4	100.0	88.7	11.3%		110	16.5	30.0	Nice!	
+Finca Altos De Erapuca	Rave	Central America	Honduras	Copán	1360	Catuai	Washed	2015	10.1%	715	180	26/05/2025	KL Washed	1.3	5	100.0	88.3	11.7%		108	16.5	30.0	Very nice!	
+Kieni	Has Bean	Africa	Kenya	Nyeri	1800	SL28 AA	Washed	2015	11.6%	718	203	07/07/2024	KL Washed	1.0	6	117.5	102.3	12.9%		114	16.5	25.0	Very nice!	
+San Pascual	Rave	South America	Colombia	Finca San Pascual, Santa Barbara Estate, Fredonia, Antioquia	1400-2000	Colombia, Typica, Castillo, Bourbon & Tabi	Natural	2015	8.5%	717	177	26/05/2025	KL Natural	1.7	7	100.0	87.9	12.1%		119	16.5	27.5	Nice, tiny bit darker.	
+Fazenda Taquaral	88graines	South America	Brazil	Campo das Vertentes, Ibituruna	900-1200	Yellow Catuai	Natural Anaerobic	2023	10.4%	720	148	26/05/2025	KL Natural	2.7	8	100.0	86.2	13.8%		112	16.0	50.0	Fantastic!	
+Fazenda Taquaral	88graines	South America	Brazil	Campo das Vertentes, Ibituruna	900-1200	Yellow Catuai	Natural Anaerobic	2023	10.4%	720	148	01/06/2025	KL Natural	2.8	1,2,3	300.0	258.5	13.8%						
+Finca Buenos Aíres	88graines	Central America	Guatemala	La Democracia, Huehuetenango	1600	Castillo	Natural	2023	11.1%	747	184	01/06/2025	KL Natural	3.5	4	80.0	67.8	15.3%		102	16.0	30.0	Good, but a bit too dark	
+La Fila / Familly Urena Rojas	88graines	Central America	Costa Rica	San Jose Province, Brunca region, Chirripo	1300-1800	Villalobos	Black Honey	2023	10.7%	758	166	01/06/2025	KL Natural	2.3	5	80.0	69.5	13.1%						
+San Pascual	Rave	South America	Colombia	Finca San Pascual, Santa Barbara Estate, Fredonia, Antioquia	1400-2000	Colombia, Typica, Castillo, Bourbon & Tabi	Natural	2015	8.5%	717	177	01/06/2025	KL Natural	1.9	6	80.0	70.0	12.5%						
+Finca Buenos Aíres	88graines	Central America	Guatemala	La Democracia, Huehuetenango	1600	Castillo	Natural	2023	11.1%	747	184	01/06/2025	KL Natural	2.7	7	80.0	68.3	14.6%		113	16.0	27.5	Very nice!	
+Acatenango	Sweet Maria's	Central America	Guatemala	Acatenango	1600-1700	Gesha	Washed	2016	11.3%	687	168	01/06/2025	KL Washed	1.0	8	80.0	69.4	13.3%						
+Nyeri Hill AA	Sweet Maria's	Africa	Kenya	Nyeri District, Karatina Division	1800-2200	SL-28, SL-34, Ruiri-11	Washed	2016	11.6%	717	202	01/06/2025	KL Washed	1.3	9	80.0	68.7	14.1%						
+Finca Buenos Aíres	88graines	Central America	Guatemala	La Democracia, Huehuetenango	1600	Castillo	Natural	2023	11.1%	747	184	01/06/2025	KL Natural	2.0	10	80.0	68.9	13.9%		120	16.5	22.5	Okay, but a weird aftertaste. Too light.	
+Nyeri Hill AA	Sweet Maria's	Africa	Kenya	Nyeri District, Karatina Division	1800-2200	SL-28, SL-34, Ruiri-11	Washed	2016	11.6%	717	202	04/06/2025	KL Washed	0.8	1	80.0	70.1	12.4%						Fan 1.02
+Corazon de Jesus / El Salitre	88graines	Central America	Costa Rica	San Jose Province, Brunca region, Chirripo	1300-1700	Caturra	Natural	2024	11.1%	741	179	04/06/2025	KL Natural	1.8	2	80.0	69.7	12.9%						
+Fazenda Cerrado Grande	88graines	South America	Brazil	Campo das Vertentes, Santo Antônio do Amparo	950-1150	Yellow Bourbon	Natural	2024	11.8%	725	171	04/06/2025	KL Natural	2.4	3	80.0	68.3	14.6%						
+Finca El Cucurucho / Carlos Ulloa	88graines	Central America	Honduras	El Ocotillo, Santa Barbara	1850	Catuai	Honey	2024	10.3%	760	166	04/06/2025	KL Natural	2.0	4	80.0	69.6	13.0%						
+Finca Agua Tibia / Castillo Family	88graines	Central America	Guatemala	Frijanes	1600-1700	H1	Natural	2024	11.8%	741	197	04/06/2025	KL Natural	2.2	5	80.0	68.5	14.4%						Fan 1.02
+Hacienda Sonora / Alberto & Diego Guardia	88graines	Central America	Costa Rica	Central Valley	1300-1825	Obata	Natural	2024	11.3%	753	157	04/06/2025	KL Natural	1.8	6	80.0	69.1	13.6%						
